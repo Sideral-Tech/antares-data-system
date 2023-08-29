@@ -23,6 +23,13 @@ function setupWatcher(networkSettings) {
 function setupBot(botSettings) {
   new Worker(new URL("./src/bot.js", import.meta.url).href, {
     type: "module",
+    deno: {
+      permissions: {
+        net: "inherit",
+        read: "inherit",
+        env: false,
+      },
+    },
   }).postMessage(botSettings);
 }
 
